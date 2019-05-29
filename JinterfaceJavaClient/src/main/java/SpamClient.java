@@ -7,24 +7,56 @@ public class SpamClient {
     public static void main(String[] args) {
         try {
             OtpNode myNode = new OtpNode("client","erljava");
-            OtpMbox myMbox = myNode.createMbox("sendingspam");
+            final OtpMbox myMbox = myNode.createMbox("sendingspam");
 
-            OtpErlangString otpErlangString;
-            OtpErlangObject[] reply;
+            new Thread(new Runnable() {
+                public void run() {
+                    OtpErlangString otpErlangString;
+                    OtpErlangObject[] reply;
+                    OtpErlangTuple myTuple;
+                    while(true) {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        otpErlangString = new OtpErlangString(String.valueOf(new Date()));
+                        reply = new OtpErlangObject[]{myMbox.self(),otpErlangString};
+                        myTuple = new OtpErlangTuple(reply);
+                        myMbox.send("counterserver", "server@micha-HP-ProBook-650-G1", myTuple);
+                    }
+                }
+            }).start();
 
-            OtpErlangTuple myTuple;
+            new Thread(new Runnable() {
+                public void run() {
+                    System.out.println("im running");;
+                }
+            }).start();
 
-            while(true) {
-                Thread.sleep(2000);
-                otpErlangString = new OtpErlangString(String.valueOf(new Date()));
-                reply = new OtpErlangObject[]{myMbox.self(),otpErlangString};
-                myTuple = new OtpErlangTuple(reply);
-                myMbox.send("counterserver", "server@micha-HP-ProBook-650-G1", myTuple);
-            }
+            new Thread(new Runnable() {
+                public void run() {
+                    OtpErlangObject received;
+                    while (true){
+                        try {
+                            received = myMbox.receive();
+                            if(received instanceof OtpErlangString)
+                            {
+                                System.out.println("Received: ");
+                                System.out.println(received);
+                            }
+                        } catch (OtpErlangExit otpErlangExit) {
+                            otpErlangExit.printStackTrace();
+                        } catch (OtpErlangDecodeException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+
+
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
