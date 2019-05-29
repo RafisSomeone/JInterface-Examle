@@ -1,3 +1,5 @@
+package ClientErlangJavaServer;
+
 import com.ericsson.otp.erlang.*;
 
 public class CounterServer
@@ -37,8 +39,8 @@ public class CounterServer
             command = (OtpErlangString) myMsg.elementAt(1);
 
 
-            System.out.println(from.node());
-            System.out.println(command);
+            System.out.println("get "+ command + " from "+ from.node());
+
 
             OtpErlangObject[] reply = new OtpErlangObject[2];
 

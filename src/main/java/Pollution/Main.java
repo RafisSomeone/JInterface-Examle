@@ -32,6 +32,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();
+        Button btn2 = new Button();
         btn.setText("Say 'Hello World'");
         final TextArea text = new TextArea();
         text.setMaxSize(100,10);
@@ -84,6 +85,17 @@ public class Main extends Application {
         });
 
 
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+
+//tu piszesz funckje
+
+            }
+        });
+
+
 
         StackPane root = new StackPane();
 
@@ -91,6 +103,7 @@ public class Main extends Application {
         root.getChildren().add(text2);
         root.getChildren().add(text3);
         root.getChildren().add(btn);
+        root.getChildren().add(btn2);
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
 

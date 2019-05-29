@@ -20,8 +20,7 @@ public class SpamClient {
                             e.printStackTrace();
                         }
                        OtpErlangString otpErlangString = new OtpErlangString(String.valueOf(new Date()));
-//                        reply = new OtpErlangObject[]{new OtpErlangAtom("sendingspam"),myMbox.self(),otpErlangString};
-//                        myTuple = new OtpErlangTuple(reply);
+
                         OtpErlangObject[] reply = new OtpErlangObject[3];
 
                         reply[0] = new OtpErlangAtom(myMbox.getName());
