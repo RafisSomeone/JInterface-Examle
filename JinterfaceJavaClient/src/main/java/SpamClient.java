@@ -34,11 +34,10 @@ public class SpamClient {
                     while (true){
                         try {
                             received = myMbox.receive();
-                            if(received instanceof OtpErlangString)
-                            {
+
                                 System.out.println("Received: ");
                                 System.out.println(received);
-                            }
+
                         } catch (OtpErlangExit otpErlangExit) {
                             otpErlangExit.printStackTrace();
                         } catch (OtpErlangDecodeException e) {
