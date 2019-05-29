@@ -30,12 +30,6 @@ public class SpamClient {
 
             new Thread(new Runnable() {
                 public void run() {
-                    System.out.println("im running");;
-                }
-            }).start();
-
-            new Thread(new Runnable() {
-                public void run() {
                     OtpErlangObject received;
                     while (true){
                         try {
