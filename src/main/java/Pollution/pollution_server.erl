@@ -32,6 +32,7 @@ loop(Monitor) ->
       loop(Monitor);
 
     {request, Name,Node, addStation, {Name1, Location}} ->
+      io:format("The value is: ~p.", [Name1]),
       Result = pollution:addStation(Name1, Location,Monitor),
       process(Result, Name,Node, Monitor);
 
