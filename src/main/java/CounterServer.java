@@ -36,7 +36,7 @@ public class CounterServer
 
             command = (OtpErlangString) myMsg.elementAt(1);
 
-            // here you may want to check the value of command
+            System.out.println(command);
 
             OtpErlangObject[] reply = new OtpErlangObject[2];
 
