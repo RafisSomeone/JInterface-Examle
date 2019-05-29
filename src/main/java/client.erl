@@ -12,7 +12,7 @@
 
 count() ->
 
-  {countserver, 'server@pegaso'} ! {self(), "count"},
+  {counterserver, 'server@rafal-GL553VD'} ! {self(), "count"},
 
   receive
 

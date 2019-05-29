@@ -8,8 +8,6 @@ public class CounterServer
     {
 
 
-//        OtpEpmd.publishPort().
-
         OtpNode myNode = new OtpNode("server","erljava");
 
         OtpMbox myMbox = myNode.createMbox("counterserver");
